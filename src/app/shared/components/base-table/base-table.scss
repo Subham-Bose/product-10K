@@ -1,0 +1,11 @@
+.table-container {
+  height: calc(100vh - 120px);
+  width: 100%;
+  position: relative;
+}
+
+.table-header-actions {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Edit {{ productName }}</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>SKU</mat-label>
+    <input matInput [(ngModel)]="sku">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Product Name</mat-label>
+    <input matInput [(ngModel)]="productName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" [(ngModel)]="price">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Stock</mat-label>
+    <input matInput type="number" [(ngModel)]="quantityInStock">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSave()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

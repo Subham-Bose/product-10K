@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Manage Columns</h2>
+<mat-dialog-content class="column-list">
+  <div *ngFor="let col of columns" class="column-item">
+    <mat-checkbox [(ngModel)]="col.isVisible">
+      {{ col.headerName }}
+    </mat-checkbox>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Apply</button>
+</mat-dialog-actions>

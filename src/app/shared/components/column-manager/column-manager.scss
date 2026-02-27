@@ -1,0 +1,9 @@
+.column-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  max-height: 400px;
+}
+.column-item {
+  margin: 8px 0;
+}
