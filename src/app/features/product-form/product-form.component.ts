@@ -1,7 +1,7 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { email, form, FormField, required } from '@angular/forms/signals'; // Ensure these imports match your installed signal-forms version
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { email, form, FormField, required, validate } from '@angular/forms/signals';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,8 +23,7 @@ export interface Product {
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
-    FormField,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -36,21 +35,35 @@ export interface Product {
   styleUrl: './product-form.component.css',
 })
 export class ProductFormComponent {
-  productModel = signal<Product>({
-    sku: '',
-    productName: '',
-    translatedName: '',
-    price: 0,
-    warehouseName: '',
-    warehouseAddress: '',
-    warehouseEmail: ''
+  productForm = new FormGroup({
+    sku: new FormControl('', [Validators.required]),
+    productName: new FormControl('', [Validators.required]),
+    translatedName: new FormControl(''),
+    price: new FormControl(0, [Validators.required, Validators.min(1)]),
+    warehouseName: new FormControl(''),
+    warehouseAddress: new FormControl(''),
+    warehouseEmail: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  productForm = form(this.productModel, (schema) => {
-    required(schema.sku, { message: 'Enter SKU value' });
-    required(schema.price, { message: 'Price is missing' });
-    required(schema.productName, { message: 'Product Name is required' });
-    required(schema.warehouseEmail, { message: 'Email is required' });
-    email(schema.warehouseEmail, { message: 'Email is not valid' });
-  });
+  onSubmit() {
+    console.log(this.productForm.value);
+  }
+
+  // productModel = signal<Product>({
+  //   sku: '',
+  //   productName: '',
+  //   translatedName: '',
+  //   price: 0,
+  //   warehouseName: '',
+  //   warehouseAddress: '',
+  //   warehouseEmail: ''
+  // });
+
+  // productForm = form(this.productModel, (schema) => {
+  //   required(schema.sku, { message: 'Enter SKU value' });
+  //   required(schema.price, { message: 'Price is missing' });
+  //   required(schema.productName, { message: 'Product Name is required' });
+  //   required(schema.warehouseEmail, { message: 'Email is required' });
+  //   email(schema.warehouseEmail, { message: 'Email is not valid' });
+  // });
 }
