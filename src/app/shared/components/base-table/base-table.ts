@@ -35,7 +35,7 @@ export class BaseTable implements OnChanges {
   constructor(private dialog: MatDialog) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['rowData'] && this.gridApi) {
+    if (changes['rowData'] && this.gridApi && !changes['rowData'].firstChange) {
       this.gridApi.setGridOption('rowData', this.rowData);
     }
   }

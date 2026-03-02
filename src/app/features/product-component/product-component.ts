@@ -66,10 +66,12 @@ export class ProductComponent implements OnInit {
 
   loadProducts(): void {
     this.productService.getProducts().subscribe({
-      next: (data) => (this.products = data),
+      next: (data) => {
+        this.products = data,
+        this.cd.detectChanges();
+      },
       error: (err) => console.error('Error fetching products', err),
     });
-    this.cd.detectChanges();
   }
 
   onEdit(row: Product) {

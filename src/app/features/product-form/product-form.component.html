@@ -1,0 +1,76 @@
+<form class="product-form">
+  <!-- SKU -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>SKU *</mat-label>
+    <input matInput [formField]="productForm.sku" />
+    @if (productForm.sku().invalid() && productForm.sku().touched()) {
+      <mat-error>
+        @for (err of productForm.sku().errors(); track $index) {
+          <span>{{ err.message }}</span>
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Product Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Product Name *</mat-label>
+    <input matInput [formField]="productForm.productName" />
+    @if (productForm.productName().invalid() && productForm.productName().touched()) {
+      <mat-error>
+        @for (err of productForm.productName().errors(); track $index) {
+          <span>{{ err.message }}</span>
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Translated Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Translated Name</mat-label>
+    <input matInput [formField]="productForm.translatedName" />
+  </mat-form-field>
+
+  <!-- Price -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Price *</mat-label>
+    <input matInput type="number" [formField]="productForm.price" />
+    @if (productForm.price().invalid() && productForm.price().touched()) {
+      <mat-error>
+        @for (err of productForm.price().errors(); track $index) {
+          <span>{{ err.message }}</span>
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Warehouse Name -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Warehouse Name</mat-label>
+    <input matInput [formField]="productForm.warehouseName" />
+  </mat-form-field>
+
+  <!-- Warehouse Address -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Warehouse Address</mat-label>
+    <textarea matInput rows="3" [formField]="productForm.warehouseAddress"></textarea>
+  </mat-form-field>
+
+  <!-- Warehouse Email -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Warehouse Email *</mat-label>
+    <input matInput [formField]="productForm.warehouseEmail" />
+    @if (productForm.warehouseEmail().invalid() && productForm.warehouseEmail().touched()) {
+      <mat-error>
+        @for (item of productForm.warehouseEmail().errors(); track $index) {
+          <span>{{ item.message }}</span>
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+</form>
+
+<div class="debug-box">
+  <strong>Form Value:</strong>
+  <pre>{{ productForm().value() | json }}</pre>
+</div>
